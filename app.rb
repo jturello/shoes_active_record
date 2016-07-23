@@ -39,7 +39,11 @@ end
 post('/stores/:id/shoes/new') do
   @store = Store.find params['id'].to_i
   @shoe_brand = params[:add_shoe]
-  @store.shoes.push Shoe.create({:brand => @shoe_brand})
-
+  if (!@shoe_brand.nil?) && (@shoe_brand != "")
+    @store.shoes.push Shoe.create({:brand => @shoe_brand})
+  else
+    @err = 'shoe brand cannot be blank'
+    redirect '/stores/#{@store.id}/shoes/new'
+  end
   redirect("/stores/#{@store.id}")
 end
