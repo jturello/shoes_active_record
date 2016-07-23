@@ -12,4 +12,5 @@ describe 'Add Shoe Brand Page', :type => :feature do
     click_button 'Add'
     expect(page).to have_css 'li', :text => 'Manolo Blahnik'
   end
+
 end
