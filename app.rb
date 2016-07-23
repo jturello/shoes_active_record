@@ -26,3 +26,9 @@ get('/stores/:id') do
   @shoes = @store.shoes
   erb(:store)
 end
+
+get('/shoes/new') do
+  @page_title = 'Add Shoe Brand Page'
+
+  erb(:shoe_form)
+end

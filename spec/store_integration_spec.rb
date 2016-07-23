@@ -83,15 +83,15 @@ describe('stores', {:type => :feature}) do
       expect(page).to have_css('h1', text: 'Store List')
     end
 
-    it("doesn't display the shoe brand list before any are saved") do
-      visit('/stores/new')
-      fill_in('add_store', :with => "Wanda's wonderful shoes")
-      click_button('Add')
-      click_link('Wanda\'s wonderful shoes')
-      expect(page).not_to have_css('h4', text: "Shoe Brand List")
+    it "doesn't display the shoe brand list before any are saved" do
+      visit '/stores/new'
+      fill_in 'add_store', :with => "Wanda's wonderful shoes"
+      click_button 'Add'
+      click_link 'Wanda\'s wonderful shoes'
+      expect(page).not_to have_css 'h4', text: "Shoe Brand List"
     end
 
-    it("displays an Add Shoe Brand link") do
+    it "displays an Add Shoe Brand link" do
       visit '/stores/new'
       fill_in 'add_store', :with => "Wanda's wonderful shoes"
       click_button 'Add'
@@ -99,15 +99,14 @@ describe('stores', {:type => :feature}) do
       expect(page).to have_link 'Add Shoe Brand', :href => '/shoes/new'
     end
 
-    # it("displays the Add Shoe Brand Page when users click Add Shoe Brand link") do
-    #   visit '/stores/new'
-    #   fill_in 'add_store', :with => "Wanda's wonderful shoes"
-    #   click_button 'Add'
-    #   click_link 'Wanda\'s wonderful shoes'
-    #   click_link 'Add Shoe Brand', :href => '/shoes/new'
-    #   fill_in 'add_shoe_brand', :with => 'Manolo Blahniks'
-    #   expect(page).to have_content 'Manolo Blahniks'
-    # end
+    it "displays Add Shoe Brand Page when user clicks add shoe brand link" do
+      visit '/stores/new'
+      fill_in 'add_store', :with => "Wanda's wonderful shoes"
+      click_button 'Add'
+      click_link 'Wanda\'s wonderful shoes'
+      click_link 'Add Shoe Brand'
+      expect(page).to have_css 'h1', :text => 'Add Shoe Brand Page' 
+    end
 
     # it("let's users add shoes") do
     #   visit '/stores/new'
