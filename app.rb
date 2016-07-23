@@ -24,11 +24,21 @@ get('/stores/:id') do
   @page_title = 'Store Detail Page'
   @store = Store.find(params['id'].to_i)
   @shoes = @store.shoes
+  @sub_header_instructions = 'Shoe Brand List'
   erb(:store)
 end
 
-get('/shoes/new') do
+get('/stores/:id/shoes/new') do
   @page_title = 'Add Shoe Brand Page'
+  @store = Store.find(params['id'].to_i)
 
   erb(:shoe_form)
+end
+
+post('/stores/:id/shoes/new') do
+  @store = Store.find params['id'].to_i
+  @shoe_brand = params[:add_shoe]
+  @store.shoes.push Shoe.create({:brand => @shoe_brand})
+  
+  redirect("/stores/#{@store.id}")
 end

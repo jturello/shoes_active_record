@@ -1,14 +1,20 @@
 <h3>Store Name: <%= @store.name %></h3>
 
- <a href="/shoes/new">Add Shoe Brand</a>
+ <a href="/stores/<%= @store.id %>/shoes/new">Add Shoe Brand</a>
 
 <hr>
 
 <% if !@store.shoes.empty? %>
-<h4>Shoe Brand List</h4>
-
-
-
+<h4><%= @sub_header_instructions %></h4>
+    <ul>
+      <% @store.shoes.each do |shoe| %>
+      <li><a href="/stores/<%= @store.id %>/shoes/<%= shoe.id %>"><%= shoe.brand %></a></li>
+      <% end %>
+    </ul>
 <% end %>
+
+
+
+
 
 <a href="/">home</a>

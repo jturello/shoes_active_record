@@ -96,7 +96,7 @@ describe('stores', {:type => :feature}) do
       fill_in 'add_store', :with => "Wanda's wonderful shoes"
       click_button 'Add'
       click_link 'Wanda\'s wonderful shoes'
-      expect(page).to have_link 'Add Shoe Brand', :href => '/shoes/new'
+      expect(page).to have_link 'Add Shoe Brand' #, :href => '/stores/1/shoes/new'
     end
 
     it "displays Add Shoe Brand Page when user clicks add shoe brand link" do
@@ -105,10 +105,45 @@ describe('stores', {:type => :feature}) do
       click_button 'Add'
       click_link 'Wanda\'s wonderful shoes'
       click_link 'Add Shoe Brand'
-      expect(page).to have_css 'h1', :text => 'Add Shoe Brand Page' 
+      expect(page).to have_css 'h1', :text => 'Add Shoe Brand Page'
     end
 
-    # it("let's users add shoes") do
+    it "displays shoe brand in shoe brand list when added" do
+      visit '/stores/new'
+      fill_in 'add_store', :with => "Wanda's wonderful shoes"
+      click_button 'Add'
+      click_link 'Wanda\'s wonderful shoes'
+      click_link 'Add Shoe Brand'
+      fill_in 'add_shoe', :with => 'Manolo Blahnik'
+      click_button 'Add'
+      expect(page).to have_css 'li', :text => 'Manolo Blahnik'
+    end
+
+  end
+  describe 'Add Shoe Brand Page', :type => :feature do
+
+    it "let's users add a shoe brand" do
+      visit '/stores/new'
+      fill_in 'add_store', :with => "Wanda's wonderful shoes"
+      click_button 'Add'
+      click_link 'Wanda\'s wonderful shoes'
+      click_link 'Add Shoe Brand'
+      fill_in 'add_shoe', :with => 'Manolo Blahnik'
+      click_button 'Add'
+      expect(page).to have_css 'li', :text => 'Manolo Blahnik'
+    end
+
+    # it("re-displays Store Detail Page on adding a new shoe brand") do
+    #   visit '/stores/new'
+    #   fill_in 'add_store', :with => "Wanda's wonderful shoes"
+    #   click_button 'Add'
+    #   click_link 'Wanda\'s wonderful shoes'
+    #   click_link 'Add Shoe Brand', :href => '/shoes/new'
+    #   fill_in 'add_shoe_brand', :with => 'Manolo Blahniks'
+    #   expect(page).to have_content 'Manolo Blahniks'
+    # end
+
+    # it("let's users add a shoe brand") do
     #   visit '/stores/new'
     #   fill_in 'store', :with => "Wanda's wonderful shoes"
     #   click_button 'Add'
@@ -123,18 +158,6 @@ describe('stores', {:type => :feature}) do
     #   click_button('Add')
     #   click_link('Wanda\'s wonderful shoes')
     #   expect(page).not_to have_css('h4', text: "Shoe Brand List")
-    # end
-  end
-  describe 'Add Shoe Brand Page', :type => :feature do
-
-    # it("re-displays Store Detail Page on adding a new shoe brand") do
-    #   visit '/stores/new'
-    #   fill_in 'add_store', :with => "Wanda's wonderful shoes"
-    #   click_button 'Add'
-    #   click_link 'Wanda\'s wonderful shoes'
-    #   click_link 'Add Shoe Brand', :href => '/shoes/new'
-    #   fill_in 'add_shoe_brand', :with => 'Manolo Blahniks'
-    #   expect(page).to have_content 'Manolo Blahniks'
     # end
   end
 end
