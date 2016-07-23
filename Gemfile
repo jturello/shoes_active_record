@@ -11,5 +11,5 @@ group :test do
   gem 'capybara'
   gem 'pry'
   gem 'shoulda-matchers'
-  gem 'launchy'
+  gem 'launchy' 
 end
