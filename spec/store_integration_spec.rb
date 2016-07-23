@@ -56,6 +56,14 @@ describe('stores', {:type => :feature}) do
       expect(page).to have_css('h1', text: 'Store List')
     end
 
+    it("let's user add a store location") do
+      visit '/stores/new'
+      fill_in 'add_store', :with => "Joan's shoes"
+      fill_in 'add_location', :with => 'La Paz'
+      click_button 'Add'
+      click_link "Joan's shoes"
+      expect(page).to have_content 'La Paz'
+    end
 
   end
 

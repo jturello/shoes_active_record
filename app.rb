@@ -16,7 +16,8 @@ end
 
 post('/stores/new') do
   @store_name = params[:add_store]
-  Store.create({:name => @store_name})
+  @store_location = params[:add_location]
+  Store.create({name: @store_name, location: @store_location})
   redirect('/')
 end
 
@@ -39,6 +40,6 @@ post('/stores/:id/shoes/new') do
   @store = Store.find params['id'].to_i
   @shoe_brand = params[:add_shoe]
   @store.shoes.push Shoe.create({:brand => @shoe_brand})
-  
+
   redirect("/stores/#{@store.id}")
 end
