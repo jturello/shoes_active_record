@@ -39,6 +39,17 @@ describe('stores', {:type => :feature}) do
       click_link("Joan's Shoes")
       expect(page).to have_content('Store Detail Page')
     end
+
+    it('displays an Add Shoe Brand link') do
+      visit('/')
+      expect(page).to have_content 'Add a Shoe Brand'
+    end
+
+    it('displays the Add Shoe Brand page when Add Shoe Brand link is clicked') do
+      visit '/'
+      click_link 'Add a Shoe Brand'
+      expect(page).to have_content 'Shoe Brand List Page'
+    end
   end
 
   describe('Add Store Page', {:type => :feature}) do

@@ -1,0 +1,20 @@
+
+
+<form action="/shoes/new" method="post">
+  <label for="brand">Shoe Brand: </label>
+  <input id="brand" name="brand" type="text" require>
+  <button type="submit">Add</button>
+</form>
+
+<a href="/">home</a>
+
+<hr>
+
+<% if @shoes.size > 0 %>
+<!-- <h3><%= @sub_header_instructions %></h3> -->
+    <ul>
+      <% @shoes.each do |shoe| %>
+      <li><a href="/shoes/<%= shoe.id %>"><%= shoe.brand %></a></li>
+      <% end %>
+    </ul>
+<% end %>
