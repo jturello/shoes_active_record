@@ -29,6 +29,14 @@ get('/stores/:id') do
   erb(:store)
 end
 
+patch('/stores/:id') do
+  @store = Store.find(params['id'].to_i)
+  new_name = params[:new_name]
+  new_location = params[:new_location]
+  @store.update({:name => new_name, :location => new_location})
+  redirect("stores/#{@store.id}")
+end
+
 get('/stores/:id/shoes/new') do
   @page_title = 'Add Shoe Brand Page'
   @store = Store.find(params['id'].to_i)

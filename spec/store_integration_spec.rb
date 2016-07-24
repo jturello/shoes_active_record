@@ -107,7 +107,7 @@ describe('stores', {:type => :feature}) do
       fill_in 'add_store', :with => "Wanda's wonderful shoes"
       click_button 'Add'
       click_link 'Wanda\'s wonderful shoes'
-      expect(page).to have_link 'Add Shoe Brand' #, :href => '/stores/1/shoes/new'
+      expect(page).to have_link 'Add Shoe Brand'
     end
 
     it "displays Add Shoe Brand Page when user clicks add shoe brand link" do
@@ -130,6 +130,17 @@ describe('stores', {:type => :feature}) do
       expect(page).to have_css 'li', :text => 'Manolo Blahnik'
     end
 
+    it("let's users update store info") do
+      visit '/stores/new'
+      fill_in 'add_store', :with => "Sam's snazzy shoes"
+      fill_in 'add_location', :with => "New York"
+      click_button 'Add'
+      click_link "Sam's snazzy shoes"
+      fill_in 'new_name', :with => "Sam's singularly snazzy shoes"
+      fill_in 'new_location', :with => "New Rochelle"
+      click_button 'Update'
+      expect(page).to have_content "Sam's singularly snazzy shoes"
+      expect(page).to have_content "New Rochelle"
+    end
   end
-
 end

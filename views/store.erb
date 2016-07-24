@@ -5,6 +5,20 @@
 
 <hr>
 
+<h3>Update Store Details</h3>
+
+<form action="/stores/<%= @store.id %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="new_name">Store Name: </label>
+  <input id="new_name" name="new_name" type="text" value="<%= @store.name %>" required>
+  <label for="new_location">Location: </label>
+  <input id="new_location" name="new_location" type="text" value="<%= @store.location %>" >
+  <button type="submit">Update</button>
+</form>
+
+
+<hr>
+
 <% if !@store.shoes.empty? %>
 <h4><%= @sub_header_instructions %></h4>
     <ul>
