@@ -150,8 +150,8 @@ describe('stores', {:type => :feature}) do
       click_button 'Add'
       click_link "Sam's snazzy shoes"
       click_button 'Delete'
+      expect(page).to have_content('Store List')
       expect(page).not_to have_content "Sam's snazzy shoes"
-      # expect(page).to have_content "New Rochelle"
     end
   end
 end

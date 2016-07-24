@@ -37,10 +37,16 @@ patch('/stores/:id') do
   redirect("stores/#{@store.id}")
 end
 
+delete("/stores/:id") do
+  @store = Store.find(params['id'].to_i)
+  @store.shoes.clear
+  @store.delete()
+  redirect('/')
+end
+
 get('/stores/:id/shoes/new') do
   @page_title = 'Add Shoe Brand Page'
   @store = Store.find(params['id'].to_i)
-
   erb(:shoe_form)
 end
 
