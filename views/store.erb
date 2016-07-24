@@ -16,8 +16,13 @@
   <button type="submit">Update</button>
 </form>
 
-
 <hr>
+
+<h4>Delete Store</h4>
+<form action="/stores/<%= @store.id %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit">Delete</button>
+</form>
 
 <% if !@store.shoes.empty? %>
 <h4><%= @sub_header_instructions %></h4>
@@ -27,9 +32,5 @@
       <% end %>
     </ul>
 <% end %>
-
-
-
-
 
 <a href="/">home</a>

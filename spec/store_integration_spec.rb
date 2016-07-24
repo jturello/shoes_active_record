@@ -142,5 +142,16 @@ describe('stores', {:type => :feature}) do
       expect(page).to have_content "Sam's singularly snazzy shoes"
       expect(page).to have_content "New Rochelle"
     end
+
+    it("let's users delete the store") do
+      visit '/stores/new'
+      fill_in 'add_store', :with => "Sam's snazzy shoes"
+      fill_in 'add_location', :with => "New York"
+      click_button 'Add'
+      click_link "Sam's snazzy shoes"
+      click_button 'Delete'
+      expect(page).not_to have_content "Sam's snazzy shoes"
+      # expect(page).to have_content "New Rochelle"
+    end
   end
 end
