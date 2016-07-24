@@ -6,7 +6,7 @@ describe 'Add Shoe Brand Page', :type => :feature do
     visit '/stores/new'
     fill_in 'add_store', :with => "Wanda's wonderful shoes"
     click_button 'Add'
-    click_link 'Wanda\'s wonderful shoes'
+    click_link 'Wanda\'s Wonderful Shoes'
     click_link 'Add Shoe Brand'
     fill_in 'add_shoe', :with => 'Manolo Blahnik'
     click_button 'Add'

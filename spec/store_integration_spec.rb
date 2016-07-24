@@ -29,14 +29,14 @@ describe('stores', {:type => :feature}) do
       click_link('Add a Store')
       fill_in('add_store', :with => "Joan's shoes")
       click_button('Add')
-      expect(page).to have_content("Joan's shoes")
+      expect(page).to have_content("Joan's Shoes")
     end
 
     it('displays Store Detail Page when store link is clicked') do
       visit('/stores/new')
-      fill_in('add_store', :with => "Joan's shoes")
+      fill_in('add_store', :with => "Joan's Shoes")
       click_button('Add')
-      click_link("Joan's shoes")
+      click_link("Joan's Shoes")
       expect(page).to have_content('Store Detail Page')
     end
   end
@@ -47,7 +47,7 @@ describe('stores', {:type => :feature}) do
       visit('/stores/new')
       fill_in('add_store', :with => "Joan's shoes")
       click_button('Add')
-      expect(page).to have_content("Joan's shoes")
+      expect(page).to have_content("Joan's Shoes")
     end
 
     it('displays homepage when home link is clicked') do
@@ -61,7 +61,7 @@ describe('stores', {:type => :feature}) do
       fill_in 'add_store', :with => "Joan's shoes"
       fill_in 'add_location', :with => 'La Paz'
       click_button 'Add'
-      click_link "Joan's shoes"
+      click_link "Joan's Shoes"
       expect(page).to have_content 'La Paz'
     end
 
@@ -73,15 +73,15 @@ describe('stores', {:type => :feature}) do
       visit('/stores/new')
       fill_in('add_store', :with => "Wanda's wonderful shoes")
       click_button('Add')
-      click_link('Wanda\'s wonderful shoes')
-      expect(page).to have_css('h3', text: "Wanda's wonderful shoes")
+      click_link('Wanda\'s Wonderful Shoes')
+      expect(page).to have_css('h3', text: "Wanda's Wonderful Shoes")
     end
 
     it('displays a home link') do
       visit '/stores/new'
       fill_in('add_store', :with => "Wanda's wonderful shoes")
       click_button('Add')
-      click_link('Wanda\'s wonderful shoes')
+      click_link('Wanda\'s Wonderful Shoes')
       expect(page).to have_link 'home'
     end
 
@@ -89,7 +89,7 @@ describe('stores', {:type => :feature}) do
       visit '/stores/new'
       fill_in('add_store', :with => "Wanda's wonderful shoes")
       click_button('Add')
-      click_link('Wanda\'s wonderful shoes')
+      click_link('Wanda\'s Wonderful Shoes')
       click_link 'home'
       expect(page).to have_css('h1', text: 'Store List')
     end
@@ -98,7 +98,7 @@ describe('stores', {:type => :feature}) do
       visit '/stores/new'
       fill_in 'add_store', :with => "Wanda's wonderful shoes"
       click_button 'Add'
-      click_link 'Wanda\'s wonderful shoes'
+      click_link 'Wanda\'s Wonderful Shoes'
       expect(page).not_to have_css 'h4', text: "Shoe Brand List"
     end
 
@@ -106,7 +106,7 @@ describe('stores', {:type => :feature}) do
       visit '/stores/new'
       fill_in 'add_store', :with => "Wanda's wonderful shoes"
       click_button 'Add'
-      click_link 'Wanda\'s wonderful shoes'
+      click_link 'Wanda\'s Wonderful Shoes'
       expect(page).to have_link 'Add Shoe Brand'
     end
 
@@ -114,7 +114,7 @@ describe('stores', {:type => :feature}) do
       visit '/stores/new'
       fill_in 'add_store', :with => "Wanda's wonderful shoes"
       click_button 'Add'
-      click_link 'Wanda\'s wonderful shoes'
+      click_link 'Wanda\'s Wonderful Shoes'
       click_link 'Add Shoe Brand'
       expect(page).to have_css 'h1', :text => 'Add Shoe Brand Page'
     end
@@ -123,7 +123,7 @@ describe('stores', {:type => :feature}) do
       visit '/stores/new'
       fill_in 'add_store', :with => "Wanda's wonderful shoes"
       click_button 'Add'
-      click_link 'Wanda\'s wonderful shoes'
+      click_link 'Wanda\'s Wonderful Shoes'
       click_link 'Add Shoe Brand'
       fill_in 'add_shoe', :with => 'Manolo Blahnik'
       click_button 'Add'
@@ -135,11 +135,11 @@ describe('stores', {:type => :feature}) do
       fill_in 'add_store', :with => "Sam's snazzy shoes"
       fill_in 'add_location', :with => "New York"
       click_button 'Add'
-      click_link "Sam's snazzy shoes"
+      click_link "Sam's Snazzy Shoes"
       fill_in 'new_name', :with => "Sam's singularly snazzy shoes"
       fill_in 'new_location', :with => "New Rochelle"
       click_button 'Update'
-      expect(page).to have_content "Sam's singularly snazzy shoes"
+      expect(page).to have_content "Sam's Singularly Snazzy Shoes"
       expect(page).to have_content "New Rochelle"
     end
 
@@ -148,10 +148,10 @@ describe('stores', {:type => :feature}) do
       fill_in 'add_store', :with => "Sam's snazzy shoes"
       fill_in 'add_location', :with => "New York"
       click_button 'Add'
-      click_link "Sam's snazzy shoes"
+      click_link "Sam's Snazzy Shoes"
       click_button 'Delete'
       expect(page).to have_content('Store List')
-      expect(page).not_to have_content "Sam's snazzy shoes"
+      expect(page).not_to have_content "Sam's Snazzy Shoes"
     end
   end
 end
