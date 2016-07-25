@@ -61,7 +61,6 @@ end
 post('/stores/:id/brands') do
   @store = Store.find(params['id'].to_i)
   shoe = Shoe.find(params[:brand_id].to_i)
-  # binding.pry
   @store.shoes.push(shoe)
   redirect "stores/#{@store.id}"
 end
