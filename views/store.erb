@@ -43,7 +43,8 @@
 <h4><%= @sub_header_instructions %></h4>
     <ul>
       <% @store.shoes.each do |shoe| %>
-          <li><%= shoe.brand %></li>
+          <li><a href="/shoes/<%= shoe.id %>"><%= shoe.brand %></a></li>
+          <!-- <li><a href="/stores/<%= @store.id %>"><%= @store.name %></a></li> -->
       <% end %>
     </ul>
 <% end %>

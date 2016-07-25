@@ -14,8 +14,8 @@
 <!-- <h3><%= @sub_header_instructions %></h3> -->
     <ul>
       <% @shoes.each do |shoe| %>
-      <!-- <li><a href="/shoes/<%= shoe.id %>"></a> -->
-      <li><%= shoe.brand %></li>
+      <li><a href="/shoes/<%= shoe.id %>"><%= shoe.brand %></a>
+      <!-- <li><%= shoe.brand %></li> -->
       <% end %>
     </ul>
 <% end %>

@@ -58,6 +58,27 @@ post('/shoes/new') do
   redirect '/shoes'
 end
 
+get('/shoes/:id') do
+  @page_title = 'Shoe Brand Detail Page'
+  @shoe = Shoe.find(params['id'].to_i)
+
+  erb :shoe
+end
+
+patch('/shoes/:id') do
+  @shoe = Shoe.find(params['id'].to_i)
+  new_brand = params[:new_brand]
+  @shoe.update({:brand => new_brand})
+  redirect("shoes/#{@shoe.id}")
+end
+
+delete("/shoes/:id") do
+  @shoe = Shoe.find(params['id'].to_i)
+  @shoe.stores.clear
+  @shoe.delete()
+  redirect('/shoes')
+end
+
 post('/stores/:id/brands') do
   @store = Store.find(params['id'].to_i)
   shoe = Shoe.find(params[:brand_id].to_i)
