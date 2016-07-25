@@ -60,6 +60,7 @@ end
 
 get('/shoes/:id') do
   @page_title = 'Shoe Brand Detail Page'
+  @sub_header_instructions = 'List of Stores Who Carry this Brand'
   @shoe = Shoe.find(params['id'].to_i)
 
   erb :shoe
