@@ -1,7 +1,7 @@
 <h3>Store Name: <%= @store.name %></h3>
 <h4>Location: <%= @store.location %></h4>
 
- <a href="/stores/<%= @store.id %>/shoes/new">Add Shoe Brand</a>
+<a href="/">home</a>
 
 <hr>
 
@@ -24,6 +24,21 @@
   <button type="submit">Delete</button>
 </form>
 
+<hr>
+
+<form action="/stores/<%= @store.id %>/brands" method="post">
+  <label for="brand_id">Select a Brand</label>
+  <select id='brand_id' name='brand_id' type='text'>
+    <% @all_shoes.each() do |shoe| %>
+      <option value="<%= shoe.id()%>"> <%= shoe.brand() %> </option>
+    <% end %>
+  </select>
+
+  <button type="submit">Add Brand</button>
+</form>
+
+
+
 <% if !@store.shoes.empty? %>
 <h4><%= @sub_header_instructions %></h4>
     <ul>
@@ -32,5 +47,3 @@
       <% end %>
     </ul>
 <% end %>
-
-<a href="/">home</a>

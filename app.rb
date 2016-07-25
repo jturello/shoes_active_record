@@ -1,4 +1,5 @@
 require("bundler/setup")
+require('pry')
 Bundler.require(:default)
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
@@ -25,7 +26,7 @@ get('/stores/:id') do
   @page_title = 'Store Detail Page'
   @sub_header_instructions = 'Shoe Brand List'
   @store = Store.find(params['id'].to_i)
-  @shoes = @store.shoes
+  @all_shoes = Shoe.all()
   erb(:store)
 end
 
@@ -48,7 +49,6 @@ get('/shoes') do
   @page_title = 'Shoe Brand List Page'
   @sub_header_instructions = 'Shoe Brand List'
   @shoes = Shoe.all
-
   erb :shoes
 end
 
@@ -58,23 +58,10 @@ post('/shoes/new') do
   redirect '/shoes'
 end
 
-######################################################
-get('/stores/:id/shoes/new') do
-  @page_title = 'Add Shoe Brand Page'
+post('/stores/:id/brands') do
   @store = Store.find(params['id'].to_i)
-  erb(:shoe_form)
+  shoe = Shoe.find(params[:brand_id].to_i)
+  # binding.pry
+  @store.shoes.push(shoe)
+  redirect "stores/#{@store.id}"
 end
-
-post('/stores/:id/shoes/new') do
-  @store = Store.find params['id'].to_i
-  @shoe_brand = params[:add_shoe]
-  if (!@shoe_brand.nil?) && (@shoe_brand != "")
-    @shoe = Shoe.create({:brand => @shoe_brand})
-    @store.shoes.push @shoe
-  else
-    @err = 'shoe brand cannot be blank'
-    redirect '/stores/#{@store.id}/shoes/new'
-  end
-  redirect("/stores/#{@store.id}")
-end
-#######################################################

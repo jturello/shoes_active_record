@@ -40,7 +40,7 @@ describe('stores', {:type => :feature}) do
       expect(page).to have_content('Store Detail Page')
     end
 
-    it('displays an Add Shoe Brand link') do
+    it('displays no Add Shoe Brand link') do
       visit('/')
       expect(page).to have_content 'Add a Shoe Brand'
     end
@@ -113,32 +113,12 @@ describe('stores', {:type => :feature}) do
       expect(page).not_to have_css 'h4', text: "Shoe Brand List"
     end
 
-    it "displays an Add Shoe Brand link" do
+    it "displays no Add Shoe Brand link" do
       visit '/stores/new'
       fill_in 'add_store', :with => "Wanda's wonderful shoes"
       click_button 'Add'
       click_link 'Wanda\'s Wonderful Shoes'
-      expect(page).to have_link 'Add Shoe Brand'
-    end
-
-    it "displays Add Shoe Brand Page when user clicks add shoe brand link" do
-      visit '/stores/new'
-      fill_in 'add_store', :with => "Wanda's wonderful shoes"
-      click_button 'Add'
-      click_link 'Wanda\'s Wonderful Shoes'
-      click_link 'Add Shoe Brand'
-      expect(page).to have_css 'h1', :text => 'Add Shoe Brand Page'
-    end
-
-    it "displays shoe brand in shoe brand list when added" do
-      visit '/stores/new'
-      fill_in 'add_store', :with => "Wanda's wonderful shoes"
-      click_button 'Add'
-      click_link 'Wanda\'s Wonderful Shoes'
-      click_link 'Add Shoe Brand'
-      fill_in 'add_shoe', :with => 'Manolo Blahnik'
-      click_button 'Add'
-      expect(page).to have_css 'li', :text => 'Manolo Blahnik'
+      expect(page).not_to have_link 'Add Shoe Brand'
     end
 
     it("let's users update store info") do
@@ -163,6 +143,21 @@ describe('stores', {:type => :feature}) do
       click_button 'Delete'
       expect(page).to have_content('Store List')
       expect(page).not_to have_content "Sam's Snazzy Shoes"
+    end
+
+    it "displays shoe brand in shoe brand list when added" do
+      visit '/'
+      click_link 'Add a Shoe Brand'
+      fill_in 'brand', :with => 'Nike Air Jordans'
+      click_button 'Add'
+      click_link 'home'
+      click_link('Add a Store')
+      fill_in('add_store', :with => "Joan's shoes")
+      click_button('Add')
+      click_link "Joan's Shoes"
+      select "Nike Air Jordans", :from => 'brand_id'
+      click_button 'Add Brand'
+      expect(page).to have_selector('li', text: 'Nike Air Jordans')
     end
   end
 end
