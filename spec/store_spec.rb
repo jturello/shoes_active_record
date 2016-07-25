@@ -8,6 +8,11 @@ describe(Store) do
     expect(result2).to eq(false)
   end
 
+  it('capitalizes store names users enter') do
+    store = Store.create({:name => "some store"})
+    expect(store.name).to eq "some store".titleize()
+  end
+
   it('allows a many to many relationship with shoes') do
     shoe1 = Shoe.create({brand: 'brand1'})
     shoe2 = Shoe.create({brand: 'brand2'})
